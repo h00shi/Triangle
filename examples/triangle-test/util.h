@@ -1,8 +1,8 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include "triangle.h"
-#include "triangle_api.h"
+#include "Triangle/core.h"
+#include "Triangle/api.h"
 
 void triangleio_reset(triangleio *io);
 

@@ -1,5 +1,4 @@
-
-#include "predicates.h"
+#include "Triangle/predicates.h"
 
 #ifdef CPU86
 #include <float.h>

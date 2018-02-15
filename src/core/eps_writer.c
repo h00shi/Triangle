@@ -4,8 +4,8 @@
 #include <string.h>
 #include <math.h>
 
-#include "triangle_internal.h"
-#include "eps_writer.h"
+#include "Triangle/core.h"
+#include "Triangle/eps_writer.h"
 
 // Defined in triangle.c
 extern int plus1mod3[3];

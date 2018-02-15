@@ -1,8 +1,8 @@
 #ifndef TRIANGLE_API_H
 #define TRIANGLE_API_H
 
-#include <triangle.h>
-#include <triangle_export.h>
+#include <Triangle/core.h>
+#include <Triangle/export.h>
 
 #include <stdio.h>
 #include <stdlib.h>

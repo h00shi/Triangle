@@ -1,7 +1,7 @@
 #ifndef ACUTE_INTERNAL_H
 #define ACUTE_INTERNAL_H
 
-#include "../triangle.h"
+#include "Triangle/core.h"
 
 void findNewSPLocationWithoutMaxAngle(mesh *m, behavior *b,
                       vertex torg, vertex tdest, vertex tapex,

@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <triangle_api.h>
+#include <Triangle/api.h>
 
 #include "util.h"
 

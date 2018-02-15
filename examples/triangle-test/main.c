@@ -19,8 +19,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "triangle.h"
-#include "triangle_api.h"
+#include "Triangle/core.h"
+#include "Triangle/api.h"
 
 #include "tests.h"
 

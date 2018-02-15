@@ -1,8 +1,7 @@
 
-#include "triangle_api.h"
-#include "triangle_helper.h"
-
-#include <triangle_internal.h>
+#include "Triangle/api.h"
+#include "Triangle/checks.h"
+#include "Triangle/io.h"
 
 context* triangle_context_create()
 {

@@ -1,44 +1,84 @@
-cmake_minimum_required(VERSION 3.5.0)
+# triangle ist the legacy interface:
+add_library(triangle
+   core/acute.c
+   core/eps_writer.c
+   core/predicates.c
+   core/core.c
+   core/io.c
+   )
+add_library(Triangle::triangle ALIAS triangle)
 
-project(Triangle
-   # triangle 1.6 was the last "official" version; i.e. 1.7 should be good to go:
-   VERSION 1.7.0
+set_target_properties(triangle
+   PROPERTIES
+   CXX_VISIBILITY_PRESET hidden
+   POSITION_INDEPENDENT_CODE TRUE
    )
 
-option(TRIANGLE_ENABLE_ACUTE "Enable the aCute extension." ON)
+target_link_libraries(triangle PRIVATE -lm)
+target_include_directories(triangle
+   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<INSTALL_INTERFACE:include>
+	PRIVATE private
+   )
 
-option(BUILD_TESTING "Enable unit tests." ON)
-if(BUILD_TESTING)
-   enable_testing()
+if(NOT TRIANGLE_ENABLE_ACUTE)
+   message(STATUS "Building without aCute...")
+	target_compile_options(triangle PUBLIC -DNO_ACUTE)
+else()
+   message(STATUS "Building with aCute...")
 endif()
 
-add_subdirectory(Triangle)
-add_subdirectory(examples)
+set_property(TARGET triangle PROPERTY VERSION ${Triangle_VERSION})
+set_property(TARGET triangle PROPERTY SOVERSION 1)
 
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-   "${CMAKE_CURRENT_BINARY_DIR}/Triangle/TriangleConfigVersion.cmake"
-   VERSION ${Triangle_VERSION}
-   COMPATIBILITY AnyNewerVersion
+# triangle-api is the "modern" interface:
+# force shared library for now, because otherwise check_behavior is defined and clashes with another define in triangle-cli
+add_library(triangle-api SHARED
+   api/api.c
+   api/checks.c
+   )
+add_library(Triangle::triangle-api ALIAS triangle-api)
+
+target_link_libraries(triangle-api
+	PUBLIC
+   Triangle::triangle
+   )
+target_include_directories(triangle-api
+   PUBLIC
+   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+   $<INSTALL_INTERFACE:include>
+	PRIVATE private
    )
 
-export(EXPORT TriangleTargets
-   FILE "${CMAKE_CURRENT_BINARY_DIR}/Triangle/TriangleTargets.cmake"
-   NAMESPACE Triangle::
-   )
-configure_file(cmake/TriangleConfig.cmake
-   "${CMAKE_CURRENT_BINARY_DIR}/Triangle/TriangleConfig.cmake"
-   COPYONLY
-   )
-install(EXPORT TriangleTargets
-   FILE TriangleTargets.cmake
-   NAMESPACE Triangle::
-   DESTINATION lib/cmake/Triangle
-   )
-install(
-   FILES
-   cmake/TriangleConfig.cmake
-   "${CMAKE_CURRENT_BINARY_DIR}/Triangle/TriangleConfigVersion.cmake"
-   DESTINATION lib/cmake/Triangle
-   COMPONENT Devel
-   )
+set_property(TARGET triangle-api PROPERTY VERSION ${Triangle_VERSION})
+set_property(TARGET triangle-api PROPERTY SOVERSION 1)
+set_property(TARGET triangle-api PROPERTY C_VISIBILITY_PRESET hidden)
+
+configure_file(${TRIANGLE_SOURCE_INCLUDE}/Triangle/version.h.in ${TRIANGLE_BINARY_INCLUDE}/Triangle/version.h @ONLY)
+
+include(GenerateExportHeader)
+generate_export_header(triangle-api EXPORT_FILE_NAME ${TRIANGLE_BINARY_INCLUDE}/Triangle/export.h BASE_NAME triangle)
+
+# install(
+#    TARGETS triangle triangle-api
+#    EXPORT TriangleTargets
+#    LIBRARY DESTINATION lib
+#    ARCHIVE DESTINATION lib
+#    RUNTIME DESTINATION bin
+#    INCLUDES DESTINATION include
+#    )
+
+# install(
+#    FILES
+#    #    triangle
+#    # acute.h
+#    # eps_writer.h
+#    # predicates.h
+#    config.h
+#    core/core.h
+#    #    triangle-api
+#    api/api.h
+#    ${CMAKE_CURRENT_BINARY_DIR}/version.h
+#    ${CMAKE_CURRENT_BINARY_DIR}/export.h
+#    DESTINATION include
+#    COMPONENT Devel
+#    )

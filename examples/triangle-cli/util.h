@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include "triangle_api.h"
+#include "Triangle/api.h"
 
 /* Data structure for command line switches and file names.                  */
 

@@ -1,8 +1,8 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-#include "triangle.h"
-#include "triangle_api.h"
+#include <Triangle/core.h>
+#include <Triangle/api.h>
 
 #define SUCCESS 1
 #define FAILURE 0

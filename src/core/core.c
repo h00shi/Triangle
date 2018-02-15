@@ -200,12 +200,12 @@
 #include <string.h>
 #include <math.h>
 
-#include "triangle.h"
+#include "Triangle/core.h"
 
-#include "predicates.h"
+#include "Triangle/predicates.h"
 
 #ifndef NO_ACUTE
-#include "acute.h"
+#include "Triangle/acute.h"
 #endif
 
 /* Random number seed is not constant, but I've made it global anyway.       */
@@ -1539,7 +1539,7 @@ void makesubseg(mesh *m, struct osub *newsubseg)
 /*                                                                           */
 /*****************************************************************************/
 
-void triangleinit(mesh *m, behavior *b)
+void triangleinit(mesh *m)
 {
   poolzero(&m->vertices);
   poolzero(&m->triangles);

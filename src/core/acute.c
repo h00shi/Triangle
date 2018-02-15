@@ -9,11 +9,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "triangle.h"
-#include "triangle_internal.h"
-#include "predicates.h"
-#include "acute.h"
-#include "acute_internal.h"
+#include "Triangle/core.h"
+#include "Triangle/predicates.h"
+#include "Triangle/acute.h"
+#include "Triangle/acute_internal.h"
 
 #ifndef NO_ACUTE
 

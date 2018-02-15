@@ -6,7 +6,6 @@
 #include "util.h"
 
 #include "triangle_config.h"
-#include "triangle_version.h"
 
 /*****************************************************************************/
 /*                                                                           */
@@ -85,7 +84,7 @@ void syntax()
 
 void info()
 {
-	printf("Triangle (version " TRIANGLE_VERSION ")\n");
+	printf("Triangle (version 1.6)\n");
 	printf("A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator.\n");
 	printf("\n");
 	printf("Copyright 1993, 1995, 1997, 1998, 2002, 2005 Jonathan Richard Shewchuk\n");
@@ -593,7 +592,7 @@ int write_neighbors(context *ctx, char *filename, int argc, char **argv) {
 	int status = 0;
 
 	file = fopen(filename, "w");
-	if (file == (FILE *) NULL) {
+cd 	if (file == (FILE *) NULL) {
 		return -1;
 	}
 
