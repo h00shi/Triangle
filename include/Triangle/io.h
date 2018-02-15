@@ -24,29 +24,28 @@
 /********* File I/O routines begin here                              *********/
 /**                                                                         **/
 
-int file_writenodes(mesh *m, behavior *b, FILE *nodefile);
+int file_writenodes (mesh *m, behavior *b, FILE *nodefile);
 
-int file_writeelements(mesh *m, behavior *b, FILE *elefile);
+int file_writeelements (mesh *m, behavior *b, FILE *elefile);
 
-int file_writepoly(mesh *m, behavior *b, FILE *polyfile,
-				   REAL *holelist, int holes, REAL *regionlist, int regions);
+int file_writepoly (mesh *m, behavior *b, FILE *polyfile, REAL *holelist,
+                    int holes, REAL *regionlist, int regions);
 
-int file_writeedges(mesh *m, behavior *b, FILE *edgefile);
+int file_writeedges (mesh *m, behavior *b, FILE *edgefile);
 
-int file_writeneighbors(mesh *m, behavior *b, FILE *neighborfile);
+int file_writeneighbors (mesh *m, behavior *b, FILE *neighborfile);
 
-int file_write_eps(mesh* m, behavior *b, FILE *file);
+int file_write_eps (mesh *m, behavior *b, FILE *file);
 
-int file_readnodes(FILE *nodefile, triangleio *io, int *firstnode);
-				   
-int file_readpoly(FILE *nodefile, triangleio *io, int *firstnode);
-				   
-int file_readelements(FILE *nodefile, triangleio *io);
+int file_readnodes (FILE *nodefile, triangleio *io, int *firstnode);
 
-int file_readelementsarea(FILE *file, triangleio *io);
+int file_readpoly (FILE *nodefile, triangleio *io, int *firstnode);
+
+int file_readelements (FILE *nodefile, triangleio *io);
+
+int file_readelementsarea (FILE *file, triangleio *io);
 
 /**                                                                         **/
 /********* File I/O routines end here                                *********/
-
 
 #endif /* TRIANGLE_IO_H */

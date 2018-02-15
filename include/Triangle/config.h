@@ -40,9 +40,9 @@
 
 /* Set correct size for pointer alignment calculations */
 #if defined(_M_X64) || defined(__amd64__)
-  #define ULONG_PTR unsigned long long
+#define ULONG_PTR unsigned long long
 #else
-  #define ULONG_PTR unsigned long
+#define ULONG_PTR unsigned long
 #endif
 
 /* If yours is not a Unix system, define the NO_TIMER compiler switch to     */
@@ -114,10 +114,10 @@
 /*   following constants determine how many of each structure is allocated   */
 /*   at once.                                                                */
 
-#define TRIPERBLOCK 4092           /* Number of triangles allocated at once. */
-#define SUBSEGPERBLOCK 508       /* Number of subsegments allocated at once. */
-#define VERTEXPERBLOCK 4092         /* Number of vertices allocated at once. */
-#define VIRUSPERBLOCK 1020   /* Number of virus triangles allocated at once. */
+#define TRIPERBLOCK 4092    /* Number of triangles allocated at once. */
+#define SUBSEGPERBLOCK 508  /* Number of subsegments allocated at once. */
+#define VERTEXPERBLOCK 4092 /* Number of vertices allocated at once. */
+#define VIRUSPERBLOCK 1020  /* Number of virus triangles allocated at once. */
 /* Number of encroached subsegments allocated at once. */
 #define BADSUBSEGPERBLOCK 252
 /* Number of skinny triangles allocated at once. */

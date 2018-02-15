@@ -30,28 +30,29 @@
 /*                                                                           */
 /*****************************************************************************/
 
-int main()
+int
+main ()
 {
-	context *ctx;
+  context *ctx;
 
-	assert(test_context_create_destroy(), "test_context_create_destroy");
-	assert(test_behavior_parse(), "test_behavior_parse");
+  assert (test_context_create_destroy (), "test_context_create_destroy");
+  assert (test_behavior_parse (), "test_behavior_parse");
 
-	ctx = triangle_context_create();
+  ctx = triangle_context_create ();
 
-	assert(test_mesh_create(ctx), "test_mesh_create");
-	assert(test_mesh_copy(ctx), "test_mesh_copy");
-    assert(test_mesh_statistics(ctx), "test_mesh_statistics");
-    assert(test_mesh_quality(ctx), "test_mesh_quality");
-    assert(test_mesh_refine(ctx), "test_mesh_refine");
-	
-	triangle_context_destroy(ctx);
-	
-	ctx = triangle_context_create();
+  assert (test_mesh_create (ctx), "test_mesh_create");
+  assert (test_mesh_copy (ctx), "test_mesh_copy");
+  assert (test_mesh_statistics (ctx), "test_mesh_statistics");
+  assert (test_mesh_quality (ctx), "test_mesh_quality");
+  assert (test_mesh_refine (ctx), "test_mesh_refine");
 
-    assert(test_mesh_load_refine(ctx), "test_mesh_load_refine");
-	
-	triangle_context_destroy(ctx);
+  triangle_context_destroy (ctx);
 
-	return 0;
+  ctx = triangle_context_create ();
+
+  assert (test_mesh_load_refine (ctx), "test_mesh_load_refine");
+
+  triangle_context_destroy (ctx);
+
+  return 0;
 }
